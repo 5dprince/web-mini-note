@@ -1,0 +1,427 @@
+* {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  background: #ebeef1;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: calc(env(safe-area-inset-bottom, 0) + 2em);
+  left: 20px;
+  transition: margin-left .5s;
+}
+
+#content, #markdown-content {
+  font-size: 100%;
+  line-height: 1.5em;
+  margin: 0;
+  padding: 20px;
+  overflow-y: auto;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  border: 1px #ddd solid;
+  outline: none;
+  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#printable {
+  display: none;
+}
+
+.link {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0) + 1em);
+  height: 0.8em;
+  text-align: center;
+  color: #313131;
+  font-size: 14px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.link a {
+  display: inline-block;
+  color: #313131;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#qrcodePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: none;
+}
+
+#qrcode {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.notify {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0) + 4em);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(51, 51, 51, 0.5);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 15px;
+  z-index: 999;
+}
+
+#markdown-content a {
+  color: #5281bf;
+  transition: color 0.3s ease;
+}
+
+#markdown-content a:visited {
+  outline: thin dotted;
+}
+
+#markdown-content a:active,
+#markdown-content a:hover {
+  outline: 0;
+}
+
+#markdown-content code, pre, #ws, #message {
+  font-family: ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace !important;
+  border-radius: 3px;
+  background-color: #F8F8F8;
+  color: inherit;
+  transition: background-color 0.3s ease;
+}
+
+#markdown-content code {
+  border: 1px solid #EAEAEA;
+  margin: 0 2px;
+  padding: 0 5px;
+}
+
+#markdown-content pre {
+  border: 1px solid #CCCCCC;
+  overflow: auto;
+  padding: 4px 8px;
+}
+
+#markdown-content pre > code {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#markdown-content img {
+  display: inline-block;
+  height: auto;
+  vertical-align: middle;
+  margin: 0.5rem;
+  max-width: 100%; /* 确保图片不会超出容器 */
+}
+
+#markdown-content p {
+  margin: 1rem 0;
+}
+
+#markdown-content p:has(img) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem -0.5rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  #markdown-content p:has(img) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    max-width: 80%;  /* 限制最大宽度 */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #markdown-content p:has(img) img {
+    width: 100%; /* 这里的宽度会被内联样式覆盖 */
+    height: auto;
+    object-fit: contain;  /* 改为 contain 以保持原始比例 */
+  }
+
+  /* 处理单张图片的情况 */
+  #markdown-content p:has(img:only-child) {
+    display: block;
+    text-align: center;
+    max-width: none;  /* 移除最大宽度限制 */
+  }
+
+  #markdown-content p:has(img:only-child) img {
+    max-width: 70%; /* 允许单张图片使用指定的宽度 */
+    width: auto; /* 这里的宽度会被内联样式覆盖 */
+    height: auto;
+  }
+}
+
+#markdown-content blockquote {
+  position: relative;
+  padding-left: 20px;
+  border-left: 4px solid #ccc;
+  margin-left: 0;
+}
+
+.btn {
+  position: fixed;
+  cursor: pointer;
+  z-index: 99999;
+  top: 25px;
+  right: 25px;
+  display: none;
+}
+
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: -250px;
+  background-color: #f8f8f8;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+
+.sidebar h3 {
+  padding: 8px 32px;  /* 将左内边距改为32px，与列表项对齐 */
+  margin: 0;  /* 移除默认的外边距 */
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar.open {
+  left: 0; /* 当添加 'open' 类时显示侧边栏 */
+}
+
+.container {
+  transition: margin-left .3s;
+}
+
+/* 当侧边栏打开时，调整主容器的位置 */
+.container.sidebar-open {
+  margin-left: 250px;
+}
+
+/* 在小屏幕上的特殊处理 */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .container {
+        transition: filter 0.3s;
+    }
+}
+
+/* 添加一个关闭按钮 */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #818181;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+#history-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#history-list li {
+  padding: 0;
+  position: relative;
+}
+
+#history-list li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  display: block;
+  padding: 8px 32px;
+  padding-right: 40px; /* Make room for delete button */
+}
+
+#history-list li a:hover {
+  background-color: #e6e6e6;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: #ff4444;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a1c20;
+  }
+  #content, #markdown-content {
+    background: #22252a;
+    color: #f8f8f2;
+    border: 1px solid #444;
+  }
+  #markdown-content a {
+    color: #a2cefb;
+  }
+  .link,
+  .link a {
+    color: #aaa;
+  }
+  #markdown-content code, pre, #ws, #message {
+    background-color: #2d333b;
+  }
+  #markdown-content code {
+    border: 1px solid #464c55;
+  }
+  #markdown-content pre {
+    border: 1px solid #464c55;
+  }
+  .sidebar {
+    background-color: #22252a;
+  }
+  .sidebar h3 {
+    color: #aaa;
+  }
+  
+  .close-btn {
+      color: #aaa;
+  }
+
+  .close-btn:hover {
+      color: #fff;
+  }
+
+  #history-list li a {
+      color: #ddd;
+  }
+
+  #history-list li a:hover {
+      background-color: #3a3f4b;
+  }
+
+  .delete-btn {
+      color: #777;
+  }
+
+  .delete-btn:hover {
+      color: #ff6666;
+  }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .container {
+    top: 10px;
+    right: 10px;
+    bottom: calc(env(safe-area-inset-bottom, 0) + 2em);
+    left: 10px;
+  }
+  
+  #content, #markdown-content {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .link {
+    font-size: 12px;
+  }
+  
+  .notify {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    padding-top: 30px;
+  }
+  
+  .sidebar h3 {
+    font-size: 16px;
+    padding: 8px 8px 8px 16px;
+  }
+
+  #history-list li a {
+    padding: 12px 32px; /* 增加点击区域 */
+    padding-right: 50px; /* 为删除按钮留出更多空间 */
+  }
+
+  .delete-btn {
+      right: 15px;
+      padding: 12px 15px; /* 增加点击区域 */
+      font-size: 20px; /* 增大字体大小，更容易点击 */
+  }
+}
+
+@media print {
+  .container {
+    display: none;
+  }
+  #printable {
+    display: block;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+pre code:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+

@@ -1,0 +1,16 @@
+version: "3"
+services:
+  web-note:
+    build: .
+    container_name: web-note
+    restart: always
+    environment:
+      - PORT=8080
+      - SAVE_PATH=_tmp
+      - FILE_LIMIT=100000
+      - SINGLE_FILE_SIZE_LIMIT=10240
+      - STATIC_ROOT=.
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/_tmp
