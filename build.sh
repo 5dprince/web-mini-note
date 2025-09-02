@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-IMAGE_NAME=${IMAGE_NAME:-web-note-rust}
+IMAGE_NAME=${IMAGE_NAME:-web-mini-note-rust}
 IMAGE_TAG=${IMAGE_TAG:-latest}
 
 echo "Building docker image ${IMAGE_NAME}:${IMAGE_TAG}"

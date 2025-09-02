@@ -381,7 +381,7 @@ fn render_html(note: &str, content_escaped: &str, excerpt: &str) -> String {
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/styles.css">
     <meta name="description" content="📔 {desc}">
-    <script src="/js/qrcode.min.js"></script>
+    <script src="/js/qrcode.min.js"></script> 
     <script src="/js/clipboard.min.js"></script>
     <script src="/js/marked.min.js"></script>
     <script src="/js/mousetrap.min.js"></script>

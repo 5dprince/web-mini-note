@@ -1,8 +1,8 @@
 version: "3"
 services:
-  web-note:
+  web-mini-note:
     build: .
-    container_name: web-note
+    container_name: 5dprince/web-mini-note
     restart: always
     environment:
       - PORT=8080
