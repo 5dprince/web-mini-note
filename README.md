@@ -240,3 +240,11 @@ MIT License
 ## 🙏 Acknowledgments
 
 Thanks to all contributors and the Rust community for making this lightweight note-taking solution possible!
+
+特别感谢以下开源项目的启发和贡献：
+- [@pereorga/minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad) - 经典的极简网页记事本实现
+- [@Lincest/web-note](https://github.com/Lincest/web-note) - minimalist-web-notepad 的优秀改进版本
+
+Special thanks to the following open source projects for inspiration and contributions:
+- [@pereorga/minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad) - Classic minimalist web notepad implementation  
+- [@Lincest/web-note](https://github.com/Lincest/web-note) - Excellent improved version of minimalist-web-notepad
