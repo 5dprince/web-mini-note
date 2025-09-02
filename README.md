@@ -16,8 +16,8 @@
 - ⚡ **实时保存**: 自动保存笔记内容，无需手动操作
 - 📱 **响应式设计**: 支持桌面和移动设备
 - 🎨 **Markdown 支持**: 实时预览和渲染
-- 📎 **文件上传**: 支持图片和文件上传（最大100MB）
-- 🔗 **二维码分享**: 一键生成分享二维码
+- 📎 **文件上传**: 支持图片和文件上传（最大10MB）
+- 🔗 **url分享**: 一键复制URL
 - 📜 **历史记录**: 查看最近访问的笔记
 - 🎯 **快捷键**: 支持 Ctrl+S 保存等快捷操作
 - 🔒 **隐私保护**: 本地部署，数据完全可控
@@ -39,11 +39,6 @@ docker run -d \
   --name web-mini-note \
   -p 8080:8080 \
   -v $(pwd)/data:/app/_tmp \
-  -e PORT=8080 \
-  -e SAVE_PATH=_tmp \
-  -e FILE_LIMIT=100000 \
-  -e SINGLE_FILE_SIZE_LIMIT=10240 \
-  --restart always \
   5dprince/web-mini-note
 
 # 访问 http://localhost:8080
@@ -80,11 +75,11 @@ docker run -d \
 ### ⚙️ 环境变量配置
 
 | 变量名 | 默认值 | 说明 |
-|--------|--------|------|
+|--------|-------|------|
 | `PORT` | 8080 | 服务端口 |
 | `SAVE_PATH` | _tmp | 笔记保存路径 |
 | `FILE_LIMIT` | 100000 | 最大文件数量限制 |
-| `SINGLE_FILE_SIZE_LIMIT` | 10240 | 单文件大小限制（字节） |
+| `SINGLE_FILE_SIZE_LIMIT` | 1024 | 单文件大小限制（字节） |
 | `STATIC_ROOT` | . | 静态资源根目录 |
 
 ### 📖 使用说明
@@ -133,8 +128,8 @@ docker run -d \
 - ⚡ **Real-time Saving**: Auto-save note content without manual operations
 - 📱 **Responsive Design**: Supports both desktop and mobile devices
 - 🎨 **Markdown Support**: Real-time preview and rendering
-- 📎 **File Upload**: Support image and file uploads (max 100MB)
-- 🔗 **QR Code Sharing**: One-click QR code generation for sharing
+- 📎 **File Upload**: Support image and file uploads (max 10MB)
+- 🔗 **Sharing**: One-click for sharing
 - 📜 **History**: View recently accessed notes
 - 🎯 **Keyboard Shortcuts**: Support Ctrl+S save and other shortcuts
 - 🔒 **Privacy Protection**: Self-hosted with full data control
