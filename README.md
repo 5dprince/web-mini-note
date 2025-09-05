@@ -21,6 +21,10 @@
 - 📜 **历史记录**: 查看最近访问的笔记
 - 🎯 **快捷键**: 支持 Ctrl+S 保存等快捷操作
 - 🔒 **隐私保护**: 本地部署，数据完全可控
+<img width="1039" height="683" alt="image" src="https://github.com/user-attachments/assets/eed58966-1c6f-481e-86b9-14c67ff8f2a9" />
+<img width="1033" height="686" alt="image" src="https://github.com/user-attachments/assets/aa741c46-9237-4a91-ac4f-1992013cb6b6" />
+<img width="1029" height="675" alt="image" src="https://github.com/user-attachments/assets/4e1c930b-b892-402b-b593-a6f2e9cc5685" />
+
 
 ### 🛠 技术栈
 
